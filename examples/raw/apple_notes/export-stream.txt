@@ -1,0 +1,10 @@
+@@@FOLDER@@@灵感
+@@@CHUNK@@@
+[{"folder": "灵感", "name": "会议纪要自动化的想法", "id": "x-coredata://demo/ICNote/p1", "created": "2026-03-03T01:00:00.000Z", "attachments": 0, "body": "<div><h1>会议纪要自动化</h1></div><div><b>流程</b>：录音 → 转写 → 分类 → 入库</div><ul><li>每天晚上自动跑一次</li><li>周末人工复盘一次</li></ul><div>参考：<a href=\"https://obsidian.md\">Obsidian</a></div>"}]
+@@@FOLDER@@@日记
+@@@CHUNK@@@
+[{"folder": "日记", "name": "2026.3.9", "id": "x-coredata://demo/ICNote/p2", "created": "2026-03-09T14:00:00.000Z", "attachments": 1, "body": "<div>今天和 A002 把 P02 的课程大纲过了一遍，<i>第 3 讲</i>要换成实操。</div><div>明天：给 A004 发大纲。</div>"}]
+@@@FOLDER@@@Recently Deleted
+@@@CHUNK@@@
+[{"folder": "Recently Deleted", "name": "删掉的草稿", "id": "x-coredata://demo/ICNote/p3", "created": "2026-03-01T00:00:00.000Z", "attachments": 0, "body": "<div>草稿</div>"}]
+@@@DONE@@@TOTAL:3

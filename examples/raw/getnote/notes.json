@@ -1,0 +1,45 @@
+{
+ "success": true,
+ "data": {
+  "notes": [
+   {
+    "note_id": "100000000000000001",
+    "title": "P01 家居品牌 AI 客服需求沟通",
+    "note_type": "recorder_audio",
+    "created_at": "2026-03-02 10:15:00"
+   },
+   {
+    "note_id": "100000000000000002",
+    "title": "AI 训练营第一天课堂记录",
+    "note_type": "class_audio",
+    "created_at": "2026-03-07 09:30:00"
+   },
+   {
+    "note_id": "100000000000000003",
+    "title": "测试录音",
+    "note_type": "recorder_audio",
+    "created_at": "2026-03-08 08:00:00"
+   },
+   {
+    "note_id": "100000000000000004",
+    "title": "读书会分享：《原则》读后感",
+    "note_type": "audio",
+    "created_at": "2026-03-10 20:00:00"
+   },
+   {
+    "note_id": "100000000000000005",
+    "title": "周五下午和 A003 的电话",
+    "note_type": "recorder_flash_audio",
+    "created_at": "2026-03-13 15:20:00"
+   },
+   {
+    "note_id": "100000000000000006",
+    "title": "一个想法：用 AI 自动整理会议纪要",
+    "note_type": "plain_text",
+    "created_at": "2026-03-14 22:00:00"
+   }
+  ],
+  "has_more": false,
+  "total": 6
+ }
+}

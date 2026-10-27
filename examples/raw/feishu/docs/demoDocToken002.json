@@ -1,0 +1,8 @@
+{
+ "name": "P01 客服知识库搭建方案",
+ "token": "demoDocToken002",
+ "path": "我的空间/客户项目",
+ "url": "https://example.feishu.cn/docx/demoDocToken002",
+ "modified": "1772629200",
+ "content": "一、目标：常见问题自动回答率 80%。\n二、步骤：收集问答 → 清洗 → 入库 → 灰度试用。\n三、负责人：A002。"
+}

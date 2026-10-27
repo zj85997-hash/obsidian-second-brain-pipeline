@@ -1,0 +1,17 @@
+{
+ "ok": true,
+ "data": {
+  "paragraphList": [
+   {
+    "nickName": "发言人1",
+    "startTime": 0,
+    "paragraph": "P01 的客服知识库已经整理了三百条问答，"
+   },
+   {
+    "nickName": "发言人1",
+    "startTime": 8000,
+    "paragraph": "明天开始让门店店员试用。"
+   }
+  ]
+ }
+}

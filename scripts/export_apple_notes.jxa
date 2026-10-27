@@ -1,0 +1,50 @@
+// 导出「备忘录」(Apple Notes) 全部笔记到标准输出，供 python3 -m sbp collect apple-notes 解析。
+// 用法：osascript -l JavaScript scripts/export_apple_notes.jxa > apple-notes-stream.txt
+// 首次运行时 macOS 会请求「控制备忘录」的权限，请在弹窗里允许。
+//
+// 输出格式：
+//   @@@FOLDER@@@<文件夹名>
+//   @@@CHUNK@@@ + 下一行一个 JSON 数组（每块最多 15 条，避免超长字符串被截断）
+//   @@@DONE@@@TOTAL:<条数>
+// 正文里内嵌的 base64 图片会被去掉，避免导出文件过大。
+
+ObjC.import('Foundation');
+const stdout = $.NSFileHandle.fileHandleWithStandardOutput;
+function out(s) {
+  stdout.writeData($(s + '\n').dataUsingEncoding($.NSUTF8StringEncoding));
+}
+
+const app = Application('Notes');
+const CHUNK = 15;
+let total = 0;
+
+const accounts = app.accounts();
+for (let a = 0; a < accounts.length; a++) {
+  const folders = accounts[a].folders();
+  for (let i = 0; i < folders.length; i++) {
+    const f = folders[i];
+    const folderName = '' + f.name();
+    out('@@@FOLDER@@@' + folderName);
+    const notes = f.notes();
+    for (let s = 0; s < notes.length; s += CHUNK) {
+      const arr = [];
+      for (let j = s; j < Math.min(s + CHUNK, notes.length); j++) {
+        const n = notes[j];
+        const rec = { folder: folderName };
+        try { rec.name = '' + n.name(); } catch (e) { rec.name = ''; }
+        try { rec.id = '' + n.id(); } catch (e) { rec.id = ''; }
+        try { const c = n.creationDate(); rec.created = c ? new Date(c).toISOString() : null; } catch (e) {}
+        try { const m = n.modificationDate(); rec.modified = m ? new Date(m).toISOString() : null; } catch (e) {}
+        try { rec.attachments = n.attachments().length; } catch (e) { rec.attachments = 0; }
+        try {
+          rec.body = ('' + n.body()).replace(/src="data:[^"]*"/g, 'src=""').replace(/src='data:[^']*'/g, "src=''");
+        } catch (e) { rec.body = ''; rec.error = 'body-fail'; }
+        arr.push(rec);
+      }
+      total += arr.length;
+      out('@@@CHUNK@@@');
+      out(JSON.stringify(arr));
+    }
+  }
+}
+out('@@@DONE@@@TOTAL:' + total);

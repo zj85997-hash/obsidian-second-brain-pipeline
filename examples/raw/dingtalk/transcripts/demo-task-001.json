@@ -1,0 +1,27 @@
+{
+ "ok": true,
+ "data": {
+  "paragraphList": [
+   {
+    "nickName": "A004",
+    "startTime": 0,
+    "paragraph": "学校这学期想开一门 AI 电商实战课，"
+   },
+   {
+    "nickName": "A004",
+    "startTime": 6000,
+    "paragraph": "大概 60 课时，学生以大二为主。"
+   },
+   {
+    "nickName": "A002",
+    "startTime": 15000,
+    "paragraph": "可以按「认知、内容、运营、实战」四个模块来排，每讲都有学生实操。"
+   },
+   {
+    "nickName": "A004",
+    "startTime": 42000,
+    "paragraph": "好，下周先出一版课程大纲给教务处。"
+   }
+  ]
+ }
+}

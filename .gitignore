@@ -1,0 +1,17 @@
+# 系统与 Python 缓存
+.DS_Store
+__pycache__/
+*.pyc
+
+# 你自己的配置、收件箱、库、进度和令牌：一律不提交
+config.json
+.sbp-state/
+*-token.json
+inbox/
+vault/
+sbp-demo/
+*.stream.txt
+apple-notes-stream*.txt
+
+# 示例数据是虚构的，需要提交
+!examples/**

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二大脑汇聚管线 · 付钟浩 Alex</title>
+<meta name="description" content="把得到大脑、钉钉听记、飞书文档、苹果备忘录汇进 Obsidian，按项目线自动分类，自动生成目录，还能一键把真名换成代号。零依赖 Python。">
+<style>
+  :root { --ink:#16324f; --ink2:#5b6b7c; --amber:#e08b3c; --green:#4a7c6f; --bg:#faf8f5; --card:#fff; --line:#e6e1da; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
+  a { color:var(--ink); }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+  header.top { border-bottom:1px solid var(--line); background:#fff; }
+  header.top .wrap { display:flex; justify-content:space-between; align-items:center; height:56px; font-size:14px; }
+  header.top b { letter-spacing:.5px; }
+  header.top nav a { margin-left:18px; text-decoration:none; color:var(--ink2); }
+  header.top nav a:hover { color:var(--amber); }
+  .hero { padding:64px 0 40px; }
+  .tag { display:inline-block; font-size:12px; padding:2px 10px; border-radius:99px; background:#f1e6da; color:#9a5a1f; margin-bottom:14px; }
+  h1 { font-size:36px; line-height:1.3; margin:0 0 14px; }
+  .lead { font-size:18px; color:var(--ink2); max-width:720px; margin:0 0 26px; }
+  .btns a { display:inline-block; margin:0 10px 10px 0; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600; }
+  .btn-main { background:var(--ink); color:#fff !important; }
+  .btn-sub { border:1px solid var(--ink); }
+  section { padding:28px 0; }
+  h2 { font-size:22px; margin:0 0 18px; }
+  h2 small { font-size:14px; color:var(--ink2); font-weight:400; margin-left:8px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 18px 14px; }
+  .card h3 { font-size:16px; margin:0 0 6px; }
+  .card p { margin:0; color:var(--ink2); font-size:14px; }
+  pre { background:#0f2236; color:#e8eef5; padding:16px 18px; border-radius:10px; overflow-x:auto; font-size:13px; line-height:1.6; }
+  code { font-family:Menlo,Consolas,monospace; }
+  table { border-collapse:collapse; width:100%; background:#fff; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:center; }
+  th { background:#f3efe9; }
+  td.ok { color:var(--green); } td.late { color:#b46b1f; font-weight:600; } td.miss { color:#b23b3b; font-weight:600; } td.leave { color:var(--ink2); }
+  .note { font-size:13px; color:var(--ink2); margin-top:8px; }
+  .steps { counter-reset:s; list-style:none; padding:0; margin:0; }
+  .steps li { position:relative; padding:0 0 14px 40px; }
+  .steps li::before { counter-increment:s; content:counter(s); position:absolute; left:0; top:2px; width:26px; height:26px; border-radius:50%; background:var(--amber); color:#fff; font-size:13px; text-align:center; line-height:26px; font-weight:700; }
+  .more a.card { display:block; text-decoration:none; }
+  .more a.card:hover { border-color:var(--amber); }
+  footer { border-top:1px solid var(--line); margin-top:30px; padding:24px 0 40px; font-size:13px; color:var(--ink2); }
+  @media (max-width:600px) { h1 { font-size:28px; } .hero { padding-top:40px; } header.top nav a.hide-sm { display:none; } }
+  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  .flow .box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:14px; color:var(--ink2); }
+  .flow .box b { display:block; font-size:15px; color:var(--ink); }
+  .flow .arrow { color:var(--amber); font-weight:700; }
+  .card .go { display:inline-block; margin-top:10px; font-size:14px; font-weight:600; color:var(--amber); text-decoration:none; }
+  .card .meta { font-size:13px; color:var(--ink2); margin-top:8px; }
+  .card .formula { font-size:18px; font-weight:700; margin:0 0 6px; }
+  a.card { display:block; text-decoration:none; }
+  a.card:hover { border-color:var(--amber); }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <b>付钟浩 Alex · AI 培训讲师</b>
+  <nav><a href="#more" class="hide-sm">更多项目</a><a href="https://github.com/zj85997-hash/obsidian-second-brain-pipeline">GitHub ↗</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="tag">开源 · MIT 许可 · 零依赖 Python</span>
+    <h1>第二大脑汇聚管线</h1>
+    <p class="lead">开会录音、课堂转写、飞书方案、随手记的备忘录，散在四个地方，要用的时候谁也找不到。这套脚本把它们汇进同一个 Obsidian 库，按项目线自动分类，自动生成首页和案例目录。</p>
+    <div class="btns">
+      <a class="btn-main" href="https://github.com/zj85997-hash/obsidian-second-brain-pipeline">查看源码</a>
+      <a class="btn-sub" href="#start">5 分钟试跑</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>一条命令走完四步</h2>
+    <div class="flow">
+      <div class="box"><b>① 采集</b>得到大脑 · 钉钉听记<br>飞书文档 · 苹果备忘录</div><span class="arrow">→</span>
+      <div class="box"><b>② 收件箱</b>统一成带标题、日期、<br>来源的 Markdown</div><span class="arrow">→</span>
+      <div class="box"><b>③ 分类入库</b>按规则放进<br>「项目线 / 案例」</div><span class="arrow">→</span>
+      <div class="box"><b>④ 目录页</b>首页、板块总览、<br>案例时间线</div>
+    </div>
+    <p class="note">日常只跑 <code>python3 -m sbp sync</code>；每一步也能单独跑。</p>
+  </section>
+
+  <section>
+    <h2>能做什么</h2>
+    <div class="grid">
+      <div class="card"><h3>📥 四个来源汇到一处</h3><p>录音转写、会议逐字稿、云文档、备忘录。增量采集，同一条不会重复，中断了重跑会接着来。</p></div>
+      <div class="card"><h3>🗂 按项目线自动分类</h3><p>人工指定、标题规则、正文规则依次匹配，都认不出来的进「待归类」。</p></div>
+      <div class="card"><h3>✍️ 不动你手写的内容</h3><p>默认只新增笔记，不删除、不覆盖；目录页只更新自动生成的那一段。</p></div>
+      <div class="card"><h3>🕶 一键代号化</h3><p>人名换成 A001、公司换成 P01，导出一份能拿给别人看的副本，文件名一起改，双链不断。</p></div>
+    </div>
+  </section>
+
+  <section id="start">
+    <h2>5 分钟试跑<small>不需要任何账号，演示数据全部虚构</small></h2>
+    <pre><code>git clone https://github.com/zj85997-hash/obsidian-second-brain-pipeline.git
+cd obsidian-second-brain-pipeline
+python3 -m sbp demo --out ./sbp-demo     # 用 Obsidian 打开 sbp-demo/vault</code></pre>
+    <ol class="steps">
+      <li>把 <code>config.example.json</code> 复制成 <code>config.json</code>，写上你的项目线和分类规则</li>
+      <li>登录各家官方命令行工具（getnote、dws）；飞书建一个只读应用，设好环境变量后运行 <code>feishu-auth</code></li>
+      <li>先 <code>import --dry-run</code> 预览每篇会放到哪里，没问题再正式入库</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>安全与隐私</h2>
+    <div class="grid">
+      <div class="card"><h3>🔑 代码里没有凭据</h3><p>登录交给官方工具；飞书凭据只从环境变量读，令牌文件只有你自己能读。</p></div>
+      <div class="card"><h3>🔒 证书校验始终开启</h3><p>公司网络用自签证书时，指定证书文件即可，不需要关掉校验。</p></div>
+      <div class="card"><h3>💻 笔记只在本机</h3><p>零第三方依赖，不上传任何笔记；个人配置、收件箱和库都在 .gitignore 里。</p></div>
+    </div>
+  </section>
+
+  <section id="more" class="more">
+    <h2>更多开源项目</h2>
+    <div class="grid">
+      <a class="card" href="https://zj85997-hash.github.io/tencent-meeting-attendance-skill/"><h3>📅 腾讯会议考勤统计 Skill</h3><p>腾讯会议导出表一键出日报、周报，昵称五花八门也能对上人。</p></a>
+      <a class="card" href="https://zj85997-hash.github.io/family-ai-agents-prompts/"><h3>👨‍👩‍👧 AI 家庭智能体 Prompt 模板包</h3><p>亲子沟通翻译官、家庭学习教练、成长规划师，复制粘贴就能用。</p></a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  © 2026 付钟浩（Alex）· AI 培训讲师 / FDE · 代码以 MIT 许可开源 · 页面中人名均为代号
+</div></footer>
+</body>
+</html>

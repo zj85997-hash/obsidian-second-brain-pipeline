@@ -1,0 +1,65 @@
+{
+  "_说明": "复制成 config.json 再改（config.json 已被 .gitignore 忽略）。以 _ 开头的键是说明文字，程序不读。",
+
+  "vault": "~/Documents/我的第二大脑",
+  "inbox": "~/Documents/第二大脑-收件箱",
+  "_state": "进度和令牌存放目录，默认在收件箱下的 .sbp-state，不要提交到任何仓库",
+
+  "home": {"title": "我的第二大脑", "intro": "按项目线组织的个人知识库。"},
+  "timezone_offset_hours": 8,
+  "default_line": "90-待归类",
+  "case_prefix": "案例",
+
+  "_lines": "项目线 = Obsidian 里的一级文件夹；cases = 二级「案例」文件夹，会生成案例首页。客户名建议用代号 P01、P02…",
+  "lines": [
+    {"name": "01-客户项目", "desc": "企业客户的项目（客户名用代号）", "cases": [
+      {"name": "案例P01-某制造企业·AI培训", "industry": "制造业", "service": "AI 培训与流程梳理"}
+    ]},
+    {"name": "02-课程与培训", "desc": "自己开的课、讲的课"},
+    {"name": "15-日记与复盘", "desc": "每日复盘"},
+    {"name": "90-待归类", "desc": "规则没认出来的，等人工归类"},
+    {"name": "99-存档", "desc": "测试录音、空白内容"}
+  ],
+
+  "_rules": "从上往下匹配，第一条命中就生效。title 匹配标题；content 匹配正文前 600 字（先试完所有 title 规则，才看 content）。",
+  "rules": [
+    {"line": "99-存档", "title": "空白录音|测试录音|声音测试"},
+    {"line": "01-客户项目", "case": "案例P01-某制造企业·AI培训", "title": "P01|培训考核"},
+    {"line": "15-日记与复盘", "title": "^\\d{2,4}[.\\-]\\d{1,2}[.\\-]\\d{1,2}$|日记|复盘"},
+    {"line": "02-课程与培训", "title": "课堂|训练营|公开课|课程"}
+  ],
+
+  "_overrides": "规则分错的，按完整标题人工指定：\"标题\": [\"项目线\", \"案例或 null\"]",
+  "overrides": {},
+
+  "_replacements": "词条替换：纠正转写错字，或把真名换成代号（人名 A001 起，公司 P01 起）。guard 是可选正则，用来避免误伤。",
+  "replacements": [
+    {"from": "Cloud Code", "to": "Claude Code"},
+    {"from": "某真名", "to": "A001"},
+    {"from": "某公司全称", "to": "P01"}
+  ],
+
+  "_private_mapping": "代号 → 真名的对照，只写进你本机库里的「🔒 代号对照表.md」，不要分享",
+  "private_mapping": {},
+
+  "_sync_sources": "sync 命令要在线采集的来源：getnote / dingtalk / feishu / apple-notes",
+  "sync_sources": ["getnote", "dingtalk"],
+
+  "sources": {
+    "getnote": {
+      "list_cmd": ["getnote", "notes", "--all", "-o", "json"],
+      "transcript_cmd": ["getnote", "note", "transcript", "{id}", "-o", "json"]
+    },
+    "dingtalk": {
+      "list_cmd": ["dws", "minutes", "+list-all", "--format", "json"],
+      "transcript_cmd": ["dws", "minutes", "+transcript", "--id", "{id}", "--format", "json"]
+    },
+    "feishu": {
+      "_说明": "应用凭据只从环境变量 FEISHU_APP_ID / FEISHU_APP_SECRET 读取；公司网络有自签证书时填 ca_bundle，不要关闭证书校验",
+      "port": 8899,
+      "extra_wiki_spaces": [],
+      "ca_bundle": ""
+    },
+    "apple_notes": {"skip_folders": ["Recently Deleted", "最近删除"]}
+  }
+}
